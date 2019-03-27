@@ -39,7 +39,8 @@ class BaseScene extends Phaser.Scene {
     //this.physics.arcade.collide(this.player, this.destructLayer);
     this.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
 
-    //Camera  this.cameras.main.setBounds(0, 0).zoom=1.75;
+    //Camera
+    this.cameras.main.setBounds(0, 0).zoom=1.75;
 
 
     //Launch the UIScene at the same time
