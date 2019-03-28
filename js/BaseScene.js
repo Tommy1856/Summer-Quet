@@ -21,7 +21,7 @@ class BaseScene extends Phaser.Scene {
 
   create() {
     const map = this.make.tilemap({ key: this.tileDataKey });
-    const tileset = map.addTilesetImage('landscape');
+    //const tileset = map.addTilesetImage('landscape');
     this.physics.world.on('worldbounds',function(body){
       killBullet(body.gameObject)
     }, this);
@@ -63,5 +63,35 @@ class BaseScene extends Phaser.Scene {
     this.physics.world.setBounds(0, 0, 1600, 1600);
     console.log ("hello")
     this.cameras.main.startFollow(this.archer.character);
+
+  var bullets = this.physics.add.group({
+      defaultKey: 'bullet',
+      maxSize: 10
+    });
+
   }
+}
+  function tryShoot(pointer){
+    var bullet = bullets.get(this.archer.character.x, this.archer.character.y);
+    if(bullet){
+      fireBullet.call(this, bullet, this.archer.character.rotation);
+    }
+
+//fireBullet Function
+  /*function fireBullet(bullet, rotation, target){
+  	bullet.rotation = rotation;
+  	this.physics.velocityFromRotation(rotation, 500, bullet.body.velocity);
+}*/
+
+function fireBullet(bullet, rotation, target){
+  bullet.setDepth(3);
+  bullet.body.collideWorldBounds = true;
+  bullet.body.onWorldBounds = true;
+  bullet.enableBody(false);
+  bullet.setActive(true);
+  bullet.setVisible(true);
+  bullet.rotation = rotation;
+  this.physics.velocityFromRotation(bullet.rotation, 500, bullet.body.velocity);
+}
+
 }

@@ -22,7 +22,9 @@ class UIScene extends BaseScene{
     this.gameArcher = this.gameScene.archer.character.body;
 
     //Fire Button
-  //  this.fireButton = this.pad.addButton(1300, 1075, 100, 'joystickcontroller', 'button1-up', 'button1-down');
+    this.fireButton = this.pad.addButton(1300, 1075, 200, 'joystickcontroller', 'button1-up', 'button1-down');
+    this.fireButton.on('update', firebuttonUpdate, this);
+
   }
 
   update(){
@@ -45,8 +47,8 @@ function stickUpdate (stick, force)
   }
 }
 
-/* function buttonUpdate(){
+ function firebuttonUpdate(){
   if (button.isDown){
 
   }
-} */
+}
